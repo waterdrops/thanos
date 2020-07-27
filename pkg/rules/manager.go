@@ -143,9 +143,10 @@ func NewManager(
 	return m
 }
 
+// Run is non blocking, in opposite to TSDB manager, which is blocking.
 func (m *Manager) Run() {
 	for _, mgr := range m.mgrs {
-		mgr.Run()
+		go mgr.Run()
 	}
 }
 
@@ -154,8 +155,8 @@ func (m *Manager) Stop() {
 		mgr.Stop()
 	}
 }
-
 func (m *Manager) protoRuleGroups() []*rulespb.RuleGroup {
+
 	rg := m.RuleGroups()
 	res := make([]*rulespb.RuleGroup, 0, len(rg))
 	for _, g := range rg {

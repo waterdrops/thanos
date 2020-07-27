@@ -196,16 +196,14 @@ func TestTSDBStore_LabelNames(t *testing.T) {
 	}
 
 	tsdbStore := NewTSDBStore(nil, nil, db, component.Rule, labels.FromStrings("region", "eu-west"))
-
 	for _, tc := range []struct {
 		title         string
 		labels        []string
 		expectedNames []string
 	}{
 		{
-			title:         "no label in tsdb",
-			labels:        []string{},
-			expectedNames: []string{},
+			title:  "no label in tsdb",
+			labels: []string{},
 		},
 		{
 			title:         "add one label",
@@ -251,7 +249,6 @@ func TestTSDBStore_LabelValues(t *testing.T) {
 	}
 
 	tsdbStore := NewTSDBStore(nil, nil, db, component.Rule, labels.FromStrings("region", "eu-west"))
-
 	for _, tc := range []struct {
 		title          string
 		addedLabels    []string
